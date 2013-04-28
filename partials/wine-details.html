@@ -1,0 +1,133 @@
+<div class="row-fluid" xmlns:ng="http://angularjs.org">
+
+    <form class="form-horizontal span12">
+
+        <fieldset>
+
+            <legend>Wine Details</legend>
+            <br/>
+
+            <div class="row">
+                <div class="span8">
+                    <div class="control-group">
+                        <label for="wineId" class="control-label">Id:</label>
+
+                        <div class="controls">
+                            <input id="wineId" name="id" ng-model="wine._id" type="text" disabled/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="name" class="control-label">Name:</label>
+
+                        <div class="controls">
+                            <input type="text" id="name" name="wine.name"  ng-model="wine.name" required/>
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="grapes" class="control-label">Grapes:</label>
+
+                        <div class="controls">
+                            <input type="text" id="grapes" name="wine.grapes" ng-model="wine.grapes"/>
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="country" class="control-label">Country:</label>
+
+                        <div class="controls">
+                            <input type="text" id="country" name="wine.country" ng-model="wine.country"/>
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="region" class="control-label">Region:</label>
+
+                        <div class="controls">
+                            <input type="text" id="region" name="wine.region" ng-model="wine.region"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="year" class="control-label">Year:</label>
+
+                        <div class="controls">
+                            <input class="input-small" id="year" name="wine.year" ng-model="wine.year"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="description" class="control-label">Notes:</label>
+
+                        <div class="controls">
+                            <textarea id="description" name="wine.description" ng-model="wine.description" style="width: 90%;" rows="6">{{ wine.description }}</textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="span4">
+                    <div class="well" style="width: 180px;text-align: center;width:50%;margin: 0px auto;">
+                        <p><img id="picture" width="180" src="pics/{{ wine.picture }}" onerror="this.src='pics/generic.jpg'" ng-model="wine.picture"/></p>
+                        <p style="color:#999;">To change the picture, drag a new picture from your file system onto the box above.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </fieldset>
+        <div class="form-actions">
+            <a href="#" class="btn btn-primary save" ng:click="saveWine()">Save</a>
+            <a href="#" class="btn delete" ng:click="deleteWine()" ng-show="wine._id!=undefined">Delete</a>
+        </div>
+
+    </form>
+
+</div>
+
+<div class="row-fluid status-bar">
+    <div class="span12">
+        <div class="alert alert-success" style="display: none">
+            <b>Success!</b> Wine saved successfully
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+        <!--<div class="form-left-col" ng-model="wine">-->
+    <!--<label>Id:</label>-->
+    <!--<input name="id" type="text" ng-model="wine._id" disabled />-->
+
+    <!--<label>Name:</label>-->
+    <!--<input type="text" name="wine.name"  ng-model="wine.name" required/>-->
+
+    <!--<label>Grapes:</label>-->
+    <!--<input type="text" name="wine.grapes" ng-model="wine.grapes"/>-->
+
+    <!--<label>Country:</label>-->
+    <!--<input type="text" name="wine.country" ng-model="wine.country"/>-->
+
+    <!--<label>Region:</label>-->
+    <!--<input type="text" name="wine.region" ng-model="wine.region"/>-->
+
+    <!--<label>Year:</label>-->
+    <!--<input type="text" name="wine.year" ng-model="wine.year"/>-->
+
+    <!--<button class="save" ng:click="saveWine()">Save</button>-->
+    <!--<button class="delete" ng:click="deleteWine()" ng-show="wine._id!=undefined">Delete</button>-->
+<!--</div>-->
+
+<!--<div class="form-right-col">-->
+    <!--<img id="img" width="250" height="300" src="pics/{{ wine.picture }}" onerror="this.src='pics/generic.jpg'" ng-model="wine.picture"/>-->
+    <!---->
+    <!--<label>Notes:</label>-->
+    <!--<textarea name="wine.description" ng-model="wine.description">{{ wine.description }}</textarea>-->
+<!--</div>-->
