@@ -1,6 +1,6 @@
 <!doctype html>
 
-<!-- add angular namespace to avoid it being flagged in code -->
+<!-- add angular namespace to avoid it being flagged in code and set the global app name -->
 <html xmlns:ng="http://angularjs.org" ng-app="myApp">
 <head>
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -12,11 +12,7 @@
         }
     </style>
 </head>
-<body ng:controller="MainCtrl">
-
-<!--<div id="header">-->
-    <!---->
-<!--</div>-->
+<body>
 
 <div id="content" class="container">
     <ng:include src="'partials/header.html'"></ng:include>
