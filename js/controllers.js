@@ -1,38 +1,29 @@
-function MainCtrl($scope, $window,$location) {
-    $scope.addWine = function () {
-        window.location.href = "#/wines/add";
-        //$location.path("#/wines/add");
-    };
-}
-MainCtrl.$inject = ['$scope', '$window','$location'];
-
 function WineListCtrl($scope,Wine,$rootScope) {
-    $scope.default_pic = "pics/generic.jpg";
-    Wine.query(function (response) { if (response!=null) { $rootScope.wines=response}});
+    $scope.default_pic = "generic.jpg";
+    // Managing in-memory array so don't reset it if the JSON has already been retrieved initially
+    if (!$rootScope.wines)
+        Wine.query(function (response) { if (response!=null) { $rootScope.wines=response}});
 }
 
-function WineDetailCtrl($scope, Wine, $routeParams, $location) {
+function WineDetailCtrl($scope, $routeParams) {
     function filterById(wines, id){return wines.filter(function(wines) {return (wines['_id'] == id);})[0];}
+    // Get the selected wine from the array of wines and it will bind to that data automatically
     $scope.wine = filterById($scope.wines, $routeParams.wineId);
-    $scope.saveWine = function () {
-        if ($scope.wine._id!=null) {
-            Wine.update({id:$scope.wine._id,wine:$scope.wine}, function (res) { if (res!=null) { $location.path("#wines")}});
-        }
-    }
 
     $scope.deleteWine = function () {
-        Wine.delete({id:$scope.wine._id}, function (res) { if (res) { $location.path("#wines")}});
+        // Remove the selected wine from the array of wines
+        $scope.wines.splice($scope.wines.indexOf($scope.wine),1);
     }
 }
-WineDetailCtrl.$inject = ['$scope', 'Wine', '$routeParams','$location', '$resource'];
 
-function WineAddCtrl($scope, Wine,$location,$resource) {
+function WineAddCtrl($scope, $rootScope, Wine) {
+    // They may hit add before browsing the list, need to retrieve from JSON if that's the case
+    if (!$rootScope.wines)
+        Wine.query(function (response) { if (response!=null) { $rootScope.wines=response}});
+
     $scope.saveWine = function () {
-        $scope.wine._id = $scope.wines.length+1;
-        $scope.wines.push($scope.wine);
-        //Wine.save({}, $scope.wine, function (res) { if (res!=null) { $location.path("#/wines");}})
-        $location.path("#/wines");
-        console.log("New length " + $scope.wines.length);
+        $scope.wine._id = $rootScope.wines.length+1;
+        // Add the wine to the list of wines
+        $rootScope.wines.push($scope.wine);
     }
 }
-WineAddCtrl.$inject = ['$scope', 'Wine', '$location'];
