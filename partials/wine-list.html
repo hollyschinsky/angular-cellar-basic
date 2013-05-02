@@ -1,12 +1,12 @@
-<div class="row-fluid" xmlns:ng="http://angularjs.org">
+<div class="row-fluid" xmlns:ng="http://angularjs.org" >
     <div id='content' class="span12">
         <div>
             <ul class="thumbnails">
-                <li class="thumbnail plain" style="text-align: center;" ng:repeat="wine in wines | orderBy:'name'">
+                <li class="thumbnail plain" style="text-align: center;" ng:repeat="wine in wines | orderBy:'name'" >
                     <a href='#/wines/{{ wine._id }}'>
-                        <img src="pics/{{wine.picture!=null&&wine.picture || default_pic}}" height="150" width="125"/>
-                        <h5>{{wine.name}}</h5>
-                        <i class="icon-globe"></i> {{wine.region}}, {{wine.country}}
+                        <img src="pics/{{wine.picture!=null&&wine.picture||default_pic}}" height="150" width="125"/>
+                        <h5>{{wine.name|uppercase}}</h5>
+                        <i class="icon-globe"></i> {{wine.region|capitalizeFirst}}, {{wine.country|uppercase}}
                     </a>
                 </li>
             </ul>
