@@ -1,8 +1,8 @@
-function WineListCtrl($scope,Wine,$rootScope) {
+function WineListCtrl($scope,WineService,$rootScope) {
     $scope.default_pic = "generic.jpg";
     // Managing in-memory array so don't reset it if the JSON has already been retrieved initially
     if (!$rootScope.wines)
-        Wine.query(function (response) { if (response!=null) {$rootScope.wines=response}});
+        WineService.query(function (response) { if (response!=null) {$rootScope.wines=response}});
 }
 
 function WineDetailCtrl($scope, $routeParams) {
@@ -23,7 +23,7 @@ function WineDetailCtrl($scope, $routeParams) {
     }
 }
 
-function WineAddCtrl($scope, $rootScope, Wine) {
+function WineAddCtrl($scope, $rootScope, WineService) {
     $scope.showFlag = false;
     $scope.wine = [];
     $scope.wine.country = "USA";
@@ -32,7 +32,7 @@ function WineAddCtrl($scope, $rootScope, Wine) {
     $scope.year = /^[0-9]{4,4}$/; //use for validation
     // They may click add before browsing the list, need to retrieve from JSON if that's the case
     if (!$rootScope.wines)
-        Wine.query(function (response) { if (response!=null) {$rootScope.wines=response}});
+        WineService.query(function (response) { if (response!=null) {$rootScope.wines=response}});
 
     $scope.saveWine = function () {
         $scope.wine._id = $rootScope.wines.length+1;

@@ -33,8 +33,6 @@
                         </div>
                     </div>
 
-
-
                     <div class="control-group">
                         <label for="country" class="control-label">Country:</label>
 
@@ -68,7 +66,6 @@
                             <textarea id="description" name="description" ng-model="wine.description" style="width: 90%;" rows="6">{{ wine.description }}</textarea>
                         </div>
                     </div>
-
                 </div>
 
                 <div class="span4">
@@ -85,17 +82,13 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-
             </div>
        </fieldset>
         <div class="form-actions">
             <button type="submit" class="btn btn-primary save">Save</button>
             <a href="#/wines" class="btn delete" ng:click="deleteWine(wine)" ng-show="wine._id!=undefined">Delete</a>
         </div>
-
     </form>
 </div>
 
